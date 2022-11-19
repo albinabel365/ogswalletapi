@@ -1,0 +1,438 @@
+openapi: 3.0.3
+info:
+  title: OGS Wallet API
+  description: >-
+    <p>Integration API for operators integrate OPN Gaming System of Light and
+    Wonder. The OGS Wallet API is used for backend calls from OGS to the
+    operator’s wallet platform.</p> <p>The operator’s wallet platform must
+    support session based authentication, and the functionality to deduct money
+    when the player places a bet and award possible winnings. The wallet
+    platform must also assign each player a unique ID.</p>
+  termsOfService: ''
+  contact:
+    email: aabel@lnw.com
+  license:
+    name: 2018 Scientific Games Corporation. All Rights Reserved.
+  version: 1.6.0
+  x-logo:
+    url: 'data:image/jpeg;base64,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'
+    altText: LightAndWonder logo
+  
+externalDocs:
+  description: ''
+  url: ''
+features.openapi:
+  hideTryItPanel: false
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+  - name: Wallet API
+    description: >-
+      All requests are performed by OGS to the operator’s wallet platform, and
+      the operator’s wallet platform responds to calls from OGS.
+  - name: Request Format
+    description: >-
+      The following is applicable for all OGS Wallet API requests <p>● Requests
+      are HTTPS GET operations <p>● Request parameters are URL encoded </p><p>●
+      Requests are authenticated with login name and password </p><p>● Requests
+      contain the parameter request that specifies the request method, and the
+      parameter apiversion that states the OGS Wallet API version </p><p>● All
+      parameter names are lower case characters </p><p>● All textual data is
+      assumed to be encoded in UTF-8</p>
+  - name: Response Format
+    description: >-
+      All responses are UTF-8 encoded XML, and have the following generic format
+      <p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+      &lt;RSP request=&quot;getaccount&quot; rc=&quot;0&quot; msg=&quot;optional
+      explanatory text&quot;&gt;
+      &lt;APIVERSION&gt;1.6&lt;/APIVERSION&gt;&lt;/RSP&gt; <p></p>The msg
+      attribute is only used when the request is unsuccessful. The rc attribute
+      represents the return code and is described in a separate chapter. All
+      element names shall be upper case characters. The API version shall always
+      be included in the response. Empty strings are not accepted as element
+      values in any responses, unless explicitly stated.<p></p>
+paths:
+  /:
+    get:
+      tags:
+        - getaccount
+      summary: getplayer data upon authentication
+      description: >-
+        The getaccount method is called when the player starts the game and
+        returns player specific data, including a unique player account ID. The
+        method requires an operator generated session identifier for
+        authentication.
+      parameters:
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: number
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: sessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  GAMESESSIONID:
+                    type: string
+                    description: An operator generated game session identifier
+                    maxLength: 250
+                    example: AAD8EE30-8C43-11DC-9755-668156D89593
+                  ACCOUNTID:
+                    type: string
+                    maxLength: 250
+                    example: 100002
+                  CURRENCY:
+                    type: number
+                    format: currency
+                    example: SEK
+                  COUNTRY:
+                    type: string
+                    maxLength: 3
+                    example: SWE
+                  JURISDICTION:
+                    type: string
+                    description: The jurisdiction this player falls under
+                    maxLength: 2
+                    example: uk
+                  NATIONALID:
+                    type: string
+                    description: >-
+                      Unique personal identifier for additional regulatory
+                      player information. This is left empty unless required for
+                      a specific regulated market or a specific game integration
+                    maxLength: 250
+                    example: ''
+                  NICKNAME:
+                    type: string
+                    description: >-
+                      Optional nickname for this player. Currently, this
+                      information is not used in any games and can be left empty
+                    maxLength: 250
+                    example: ''
+                xml:
+                  name: RSP
+                  wrapped: true
+              examples:
+                Success:
+                  value:
+                    request: getaccount
+                    rc: 0
+                    APIVERSION: 1.6
+                    AccountId: 100002
+                    GAMESESSIONID: AAD8EE30-8C43-11DC-9755-668156D89593
+                    ACCOUNTID: 100002
+                    CURRENCY: EUR
+                    COUNTRY: SWE
+                    JURISDICTION: UK
+                    NATIONALID: ''
+                    NICKNAME: ''
+                TechError:
+                  value:
+                    request: getaccount
+                    rc: 0
+                    msg: Technical error
+                    APIVERSION: 1.6
+        '400':
+          description: Invalid status value
+components:
+  schemas:
+    GetAccountResponse:
+      type: object
+      properties:
+        request:
+          description: Request method name
+          type: string
+          example: getaccount
+          xml:
+            attribute: true
+        rc:
+          type: integer
+          example: 0
+          xml:
+            attribute: true
+        msg:
+          type: string
+          example: ''
+          xml:
+            attribute: true
+        GAMESESSIONID:
+          type: string
+          description: An operator generated game session identifier
+          maxLength: 250
+          example: AAD8EE30-8C43-11DC-9755-668156D89593
+        ACCOUNTID:
+          type: string
+          maxLength: 250
+          example: 100002
+        CURRENCY:
+          type: number
+          format: currency
+          example: SEK
+        COUNTRY:
+          type: string
+          maxLength: 3
+          example: SWE
+        JURISDICTION:
+          type: string
+          description: The jurisdiction this player falls under
+          maxLength: 2
+          example: uk
+        NATIONALID:
+          type: string
+          description: >-
+            Unique personal identifier for additional regulatory player
+            information. This is left empty unless required for a specific
+            regulated market or a specific game integration
+          maxLength: 250
+          example: ''
+        NICKNAME:
+          type: string
+          description: >-
+            Optional nickname for this player. Currently, this information is
+            not used in any games and can be left empty
+          maxLength: 250
+          example: ''
+      xml:
+        name: RSP
+        wrapped: true
+  parameters:
+    apiversion:
+      name: apiversion
+      in: query
+      description: Specification of the OGS Wallet API version that is running
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 32
+        example: 1.6
+    currency:
+      name: currency
+      in: query
+      description: The player's currency for this action
+      required: true
+      explode: true
+      schema:
+        type: number
+        format: currency
+        example: SEK
+    device:
+      name: device
+      in: query
+      description: >-
+        The device type of the gaming client. Valid options are "desktop" and
+        "mobile"
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 32
+        example: desktop
+    gpid:
+      name: gpid
+      in: query
+      description: OGS game provider ID
+      required: true
+      explode: true
+      schema:
+        type: integer
+        example: 100
+    loginname:
+      name: loginname
+      in: query
+      description: Username representing OGS in the wallet platform
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 250
+        example: nogsuser
+    nogsgameid:
+      name: nogsgameid
+      in: query
+      description: OGS specific game ID
+      required: true
+      explode: true
+      schema:
+        type: string
+        example: 700233
+    password:
+      name: password
+      in: query
+      description: >-
+        Password for the OGS user. Should be a strong password containing at
+        least 8 characters
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 250
+        example: GE45_re23HJU
+    product:
+      name: product
+      in: query
+      description: OGS game product category
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 32
+        example: casino
+    gametype:
+      name: gametype
+      in: query
+      description: OGS game type
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 32
+        enum:
+          - slots
+          - tablegame
+          - videopoker
+          - probability
+          - lottery
+        example: slots
+    gamemodel:
+      name: gamemodel
+      in: query
+      description: OGS game model
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 32
+        enum:
+          - 10reels
+          - 6reels
+          - 5reels
+          - 4reels
+          - 3reels
+          - blackjack
+          - roulette
+          - keno
+          - bingo
+          - arcade
+          - virtualsports
+          - scratchcard
+        example: 5reels
