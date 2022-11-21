@@ -481,7 +481,7 @@ paths:
                 TechError:
                   value: |
                     <?xml version="1.0" encoding="UTF-8"?>
-                    <RSP request="getaccount" rc="1" msg="Technical error">
+                    <RSP request="getbalance" rc="1" msg="Technical error">
                     <APIVERSION>1.6</APIVERSION>
                     </RSP>
         '400':
@@ -786,7 +786,7 @@ paths:
                 TechError:
                   value: |
                     <?xml version="1.0" encoding="UTF-8"?>
-                    <RSP request="getaccount" rc="1" msg="Technical error">
+                    <RSP request="wager" rc="1" msg="Technical error">
                     <APIVERSION>1.6</APIVERSION>
                     </RSP>
         '400':
@@ -1099,7 +1099,2066 @@ paths:
                 TechError:
                   value: |
                     <?xml version="1.0" encoding="UTF-8"?>
-                    <RSP request="getaccount" rc="1" msg="Technical error">
+                    <RSP request="wager" rc="1" msg="Technical error">
+                    <APIVERSION>1.6</APIVERSION>
+                    </RSP>
+        '400':
+          description: Invalid status value
+  /gpapi?request=wager&type=tips:
+    get:
+      tags:
+        - wager
+      summary: Award player tips.
+      description: >-
+        In case the game provider integration offers the player the possibility
+        to award tips to e.g. a live dealer
+      parameters:
+        - name: request
+          in: query
+          description: Request method name
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: wager
+        - name: accountid
+          in: query
+          description: The player's unique account ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 100002
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: gpid
+          in: query
+          description: OGS game provider ID
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 100
+        - name: nogsgameid
+          in: query
+          description: OGS specific game ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 700233
+        - name: gamesessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+        - name: betamount
+          in: query
+          description: Total amount of real money and bonus money to bet
+          required: true
+          explode: true
+          schema:
+            type: number
+            maximum: 0
+            example: 0
+        - name: jpc
+          in: query
+          description: (Optional) Total jackpot contribution in player’s currency.
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpcbase
+          in: query
+          description: (Optional) Total jackpot contribution in jackpot base currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: roundid
+          in: query
+          description: >-
+            Game round specific ID, unique for each game round. Within a game
+            round, the wager and all connected results will have the same round
+            ID. The combination of gpid and roundid is always unique.
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 234786
+        - name: transactionid
+          in: query
+          description: >-
+            Game transaction ID. This ID is unique per game provider, but
+            duplicate transaction IDs can exist across several game providers
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 7654321
+        - name: type
+          in: query
+          description: The type of feature being reported from OGS to the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxlength: 32
+            example: tips
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  APIVERSION:
+                    type: string
+                    example: 1.6
+                  BONUSBALANCE:
+                    type: number
+                    description: >-
+                      The player’s bonus money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  BONUSMONEYBET:
+                    type: number
+                    description: >-
+                      The amount of the bet that took place with bonus money.
+                      The combination of bonusmoneybet + realmoneybet must
+                      exactly add up to the betamount in the original request.
+                      If this is not true, an error will be generated towards
+                      the game and the wager will not be deemed successful.
+                    example: 0
+                  REALBALANCE:
+                    type: number
+                    description: >-
+                      The player’s real money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  REALMONEYBET:
+                    type: number
+                    description: >-
+                      The amount of the bet that took place with real money. The
+                      combination of bonusmoneybet + realmoneybet must exactly
+                      add up to the betamount in the original request. If this
+                      is not true, an error will be generated towards the game
+                      and the wager will not be deemed successful.
+                    example: 10.21251
+                  CURRENCY:
+                    type: string
+                    format: currency
+                    example: SEK
+                  GAMESESSIONID:
+                    type: string
+                    description: >-
+                      (Optional) An operator generated game session identifier.
+                      This should only be included if it is different from the
+                      supplied gamesessionid on the request. This new value will
+                      be used in subsequent requests
+                    maxLength: 250
+                    example: AAD8EE30-8C43-11DC-9755-668156D89593
+              examples:
+                Success:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" ?>
+                    <RSP request="wager" rc="0">
+                    <APIVERSION>1.6</APIVERSION>
+                    <REALMONEYBET>10.21251</REALMONEYBET>
+                    <BONUSMONEYBET>0.00</BONUSMONEYBET>
+                    <REALBALANCE>1000.50</REALBALANCE>
+                    <BONUSBALANCE>123.45</BONUSBALANCE>
+                    <CURRENCY>SEK</CURRENCY>
+                    </RSP>
+                TechError:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <RSP request="wager" rc="1" msg="Technical error">
+                    <APIVERSION>1.6</APIVERSION>
+                    </RSP>
+        '400':
+          description: Invalid status value
+  /gpapi?request=result:
+    get:
+      tags:
+        - result
+      summary: Outcome of a game round.
+      description: >-
+        The result method reports outcomes of a game round. One or more results
+        are reported per game round, depending on the type of game being played.
+        The result method is also used to close a round. Closing a game round is
+        performed by setting the parameter gamestatus to “completed”. In
+        intermediary results, the status is "pending".
+      parameters:
+        - name: request
+          in: query
+          description: Request method name
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: result
+        - name: accountid
+          in: query
+          description: The player's unique account ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 100002
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: gpid
+          in: query
+          description: OGS game provider ID
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 100
+        - name: nogsgameid
+          in: query
+          description: OGS specific game ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 700233
+        - name: gamesessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+        - name: wonamount
+          in: query
+          description: Total amount of money won
+          required: true
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: gamedetails
+          in: query
+          description: >-
+            Textual representation of the game outcome of this round, e.g.
+            symbols shown to the player or cards dealt to the player. This can
+            be empty. Please refer to Appendix A for details about this
+            parameter
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxlength: 4000
+            example: ''
+        - name: gamestatus
+          in: query
+          description: >-
+            Indicates when the round is to be closed. Valid options are
+            "pending" and "completed". Pending indicates that more result will
+            come within the same game round
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxlength: 32
+            example: completed
+        - name: jpw
+          in: query
+          description: (Optional) Total jackpot win amount in player’s currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpwbase
+          in: query
+          description: (Optional) Total jackpot win amount in jackpot base currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: roundid
+          in: query
+          description: >-
+            Game round specific ID, unique for each game round. Within a game
+            round, the wager and all connected results will have the same round
+            ID. The combination of gpid and roundid is always unique.
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 234786
+        - name: transactionid
+          in: query
+          description: >-
+            Game transaction ID. This ID is unique per game provider, but
+            duplicate transaction IDs can exist across several game providers
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 7654321
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  APIVERSION:
+                    type: string
+                    example: 1.6
+                  BONUSBALANCE:
+                    type: number
+                    description: >-
+                      The player’s bonus money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  REALBALANCE:
+                    type: number
+                    description: >-
+                      The player’s real money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  TOTALAMOUNT:
+                    type: number
+                    description: >-
+                      The total amount of money that was awarded the player. The
+                      totalamount value must be equal to the wonamount value in
+                      the result request. If this is not true, an error will be
+                      generated towards the game and the result will not be
+                      deemed successful.
+                    example: 12.5
+                  CURRENCY:
+                    type: string
+                    format: currency
+                    example: SEK
+              examples:
+                Success:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" ?>
+                    <RSP request="result" rc="0">
+                    <APIVERSION>1.6</APIVERSION>
+                    <CURRENCY>SEK</CURRENCY>
+                    <REALBALANCE>1000.50</REALBALANCE>
+                    <BONUSBALANCE>123.45</BONUSBALANCE>
+                    <TOTALAMOUNT>12.5</TOTALAMOUNT>
+                    </RSP>
+                TechError:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <RSP request="result" rc="1" msg="Technical error">
+                    <APIVERSION>1.6</APIVERSION>
+                    </RSP>
+        '400':
+          description: Invalid status value
+  /gpapi?request=result&type=freerounds:
+    get:
+      tags:
+        - result
+      summary: Award freeround win for a player.
+      description: >-
+        The Free Rounds parameters are either not present at all, or all of them
+        are present. It is the operator’s responsibility to correctly hand out
+        the wonamount amount to the player’s wallet, according to the money type
+        specified in the moneytype parameter
+      parameters:
+        - name: request
+          in: query
+          description: Request method name
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: result
+        - name: accountid
+          in: query
+          description: The player's unique account ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 100002
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: gpid
+          in: query
+          description: OGS game provider ID
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 100
+        - name: nogsgameid
+          in: query
+          description: OGS specific game ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 700233
+        - name: gamesessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+        - name: wonamount
+          in: query
+          description: Total amount of money won
+          required: true
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: gamedetails
+          in: query
+          description: >-
+            Textual representation of the game outcome of this round, e.g.
+            symbols shown to the player or cards dealt to the player. This can
+            be empty. Please refer to Appendix A for details about this
+            parameter
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxlength: 4000
+            example: ''
+        - name: gamestatus
+          in: query
+          description: >-
+            Indicates when the round is to be closed. Valid options are
+            "pending" and "completed". Pending indicates that more result will
+            come within the same game round
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxlength: 32
+            example: completed
+        - name: jpw
+          in: query
+          description: (Optional) Total jackpot win amount in player’s currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpwbase
+          in: query
+          description: (Optional) Total jackpot win amount in jackpot base currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: roundid
+          in: query
+          description: >-
+            Game round specific ID, unique for each game round. Within a game
+            round, the wager and all connected results will have the same round
+            ID. The combination of gpid and roundid is always unique.
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 234786
+        - name: transactionid
+          in: query
+          description: >-
+            Game transaction ID. This ID is unique per game provider, but
+            duplicate transaction IDs can exist across several game providers
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 7654321
+        - name: activationid
+          in: query
+          description: >-
+            The individual activation ID, in case a player has been granted a
+            promotional campaign multiple times. This can be empty
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: AGAS-71245-DDC124-1052
+        - name: campaignid
+          in: query
+          description: The campaign ID that this promotional feature is connected to
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: PROMOTION-GAME12-SIGNUP
+        - name: moneytype
+          in: query
+          description: >-
+            The type of money being awarded in the promotional feature. Possible
+            values are “bonus” or “real”
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - real
+              - bonus
+            example: bonus
+        - name: type
+          in: query
+          description: The type of feature being reported from OGS to the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxlength: 32
+            example: freerounds
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  APIVERSION:
+                    type: string
+                    example: 1.6
+                  BONUSBALANCE:
+                    type: number
+                    description: >-
+                      The player’s bonus money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  REALBALANCE:
+                    type: number
+                    description: >-
+                      The player’s real money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  TOTALAMOUNT:
+                    type: number
+                    description: >-
+                      The total amount of money that was awarded the player. The
+                      totalamount value must be equal to the wonamount value in
+                      the result request. If this is not true, an error will be
+                      generated towards the game and the result will not be
+                      deemed successful.
+                    example: 12.5
+                  CURRENCY:
+                    type: string
+                    format: currency
+                    example: SEK
+              examples:
+                Success:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" ?>
+                    <RSP request="result" rc="0">
+                    <APIVERSION>1.6</APIVERSION>
+                    <CURRENCY>SEK</CURRENCY>
+                    <REALBALANCE>1000.50</REALBALANCE>
+                    <BONUSBALANCE>123.45</BONUSBALANCE>
+                    <TOTALAMOUNT>12.5</TOTALAMOUNT>
+                    </RSP>
+                TechError:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <RSP request="result" rc="1" msg="Technical error">
+                    <APIVERSION>1.6</APIVERSION>
+                    </RSP>
+        '400':
+          description: Invalid status value
+  /gpapi?request=result&type=tips:
+    get:
+      tags:
+        - result
+      summary: Award tips for a player.
+      description: >-
+        In case the game provider integration offers the player the possibility
+        to award tips to e.g. a live dealer
+      parameters:
+        - name: request
+          in: query
+          description: Request method name
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: result
+        - name: accountid
+          in: query
+          description: The player's unique account ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 100002
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: gpid
+          in: query
+          description: OGS game provider ID
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 100
+        - name: nogsgameid
+          in: query
+          description: OGS specific game ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 700233
+        - name: gamesessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+        - name: wonamount
+          in: query
+          description: Total amount of money won
+          required: true
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: gamedetails
+          in: query
+          description: >-
+            Textual representation of the game outcome of this round, e.g.
+            symbols shown to the player or cards dealt to the player. This can
+            be empty. Please refer to Appendix A for details about this
+            parameter
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxlength: 4000
+            example: ''
+        - name: gamestatus
+          in: query
+          description: >-
+            Indicates when the round is to be closed. Valid options are
+            "pending" and "completed". Pending indicates that more result will
+            come within the same game round
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxlength: 32
+            example: completed
+        - name: jpw
+          in: query
+          description: (Optional) Total jackpot win amount in player’s currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpwbase
+          in: query
+          description: (Optional) Total jackpot win amount in jackpot base currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: roundid
+          in: query
+          description: >-
+            Game round specific ID, unique for each game round. Within a game
+            round, the wager and all connected results will have the same round
+            ID. The combination of gpid and roundid is always unique.
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 234786
+        - name: transactionid
+          in: query
+          description: >-
+            Game transaction ID. This ID is unique per game provider, but
+            duplicate transaction IDs can exist across several game providers
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 7654321
+        - name: type
+          in: query
+          description: The type of feature being reported from OGS to the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxlength: 32
+            example: tips
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  APIVERSION:
+                    type: string
+                    example: 1.6
+                  BONUSBALANCE:
+                    type: number
+                    description: >-
+                      The player’s bonus money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  REALBALANCE:
+                    type: number
+                    description: >-
+                      The player’s real money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  TOTALAMOUNT:
+                    type: number
+                    description: >-
+                      The total amount of money that was awarded the player. The
+                      totalamount value must be equal to the wonamount value in
+                      the result request. If this is not true, an error will be
+                      generated towards the game and the result will not be
+                      deemed successful.
+                    example: 12.5
+                  CURRENCY:
+                    type: string
+                    format: currency
+                    example: SEK
+              examples:
+                Success:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" ?>
+                    <RSP request="result" rc="0">
+                    <APIVERSION>1.6</APIVERSION>
+                    <CURRENCY>SEK</CURRENCY>
+                    <REALBALANCE>1000.50</REALBALANCE>
+                    <BONUSBALANCE>123.45</BONUSBALANCE>
+                    <TOTALAMOUNT>12.5</TOTALAMOUNT>
+                    </RSP>
+                TechError:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <RSP request="result" rc="1" msg="Technical error">
+                    <APIVERSION>1.6</APIVERSION>
+                    </RSP>
+        '400':
+          description: Invalid status value
+  /gpapi?request=rollback:
+    get:
+      tags:
+        - rollback
+      summary: Rollback of a wager
+      description: >-
+        OGS allows wagers to be rolled back as long as a result request has not
+        been sent from OGS to the wallet platform for that game round. A
+        rollback can be issued when an error occurred in the game server. E.g.,
+        if a player is disconnected for any reason.
+      parameters:
+        - name: request
+          in: query
+          description: Request method name
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: rollback
+        - name: accountid
+          in: query
+          description: The player's unique account ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 100002
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: gpid
+          in: query
+          description: OGS game provider ID
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 100
+        - name: nogsgameid
+          in: query
+          description: OGS specific game ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 700233
+        - name: gamesessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+        - name: rollbackamount
+          in: query
+          description: >-
+            Total amount of money to roll back, same as the previous wager in a
+            specific game round. The totalamount value must be equal to the
+            rollbackamount value in the rollback request. If this is not true,
+            an error will be generated towards the game and the rollback will
+            not be deemed successful.
+          required: true
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpc
+          in: query
+          description: (Optional) Total jackpot contribution in player’s currency.
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpcbase
+          in: query
+          description: (Optional) Total jackpot contribution in jackpot base currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: roundid
+          in: query
+          description: >-
+            Game round specific ID, unique for each game round. Within a game
+            round, the wager and all connected results will have the same round
+            ID. The combination of gpid and roundid is always unique.
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 234786
+        - name: transactionid
+          in: query
+          description: >-
+            Game transaction ID. This ID is unique per game provider, but
+            duplicate transaction IDs can exist across several game providers
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 7654321
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  APIVERSION:
+                    type: string
+                    example: 1.6
+                  BONUSBALANCE:
+                    type: number
+                    description: >-
+                      The player’s bonus money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  REALBALANCE:
+                    type: number
+                    description: >-
+                      The player’s real money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  TOTALAMOUNT:
+                    type: number
+                    description: >-
+                      The total amount of money that was rolled back to the
+                      player. The totalamount value must be equal to the
+                      rollbackamount value in the rollback request. If this is
+                      not true, an error will be generated towards the game and
+                      the rollback will not be deemed successful.
+                    example: 12.5
+                  CURRENCY:
+                    type: string
+                    format: currency
+                    example: SEK
+              examples:
+                Success:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" ?>
+                    <RSP request="rollback" rc="0">
+                    <APIVERSION>1.6</APIVERSION>
+                    <CURRENCY>SEK</CURRENCY>
+                    <REALBALANCE>1000.50</REALBALANCE>
+                    <BONUSBALANCE>123.45</BONUSBALANCE>
+                    <TOTALAMOUNT>12.5</TOTALAMOUNT>
+                    </RSP>
+                TechError:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <RSP request="rollback" rc="1" msg="Technical error">
+                    <APIVERSION>1.6</APIVERSION>
+                    </RSP>
+        '400':
+          description: Invalid status value
+  /gpapi?request=rollback&type=freerounds:
+    get:
+      tags:
+        - wager
+      summary: Places a freeround bet for a player.
+      description: >-
+        The Free Rounds parameters are either not present at all, or all of them
+        are present. When these parameters are present, the betamount will
+        always be 0
+      parameters:
+        - name: request
+          in: query
+          description: Request method name
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: rollback
+        - name: accountid
+          in: query
+          description: The player's unique account ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 100002
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: gpid
+          in: query
+          description: OGS game provider ID
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 100
+        - name: nogsgameid
+          in: query
+          description: OGS specific game ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 700233
+        - name: gamesessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+        - name: rollbackamount
+          in: query
+          description: >-
+            Total amount of money to roll back, same as the previous wager in a
+            specific game round. The totalamount value must be equal to the
+            rollbackamount value in the rollback request. If this is not true,
+            an error will be generated towards the game and the rollback will
+            not be deemed successful.
+          required: true
+          explode: true
+          schema:
+            type: number
+            maximum: 0
+            example: 0
+        - name: jpc
+          in: query
+          description: (Optional) Total jackpot contribution in player’s currency.
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpcbase
+          in: query
+          description: (Optional) Total jackpot contribution in jackpot base currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: roundid
+          in: query
+          description: >-
+            Game round specific ID, unique for each game round. Within a game
+            round, the wager and all connected results will have the same round
+            ID. The combination of gpid and roundid is always unique.
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 234786
+        - name: transactionid
+          in: query
+          description: >-
+            Game transaction ID. This ID is unique per game provider, but
+            duplicate transaction IDs can exist across several game providers
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 7654321
+        - name: activationid
+          in: query
+          description: >-
+            The individual activation ID, in case a player has been granted a
+            promotional campaign multiple times. This can be empty
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: AGAS-71245-DDC124-1052
+        - name: campaignid
+          in: query
+          description: The campaign ID that this promotional feature is connected to
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: PROMOTION-GAME12-SIGNUP
+        - name: moneytype
+          in: query
+          description: >-
+            The type of money being awarded in the promotional feature. Possible
+            values are “bonus” or “real”
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - real
+              - bonus
+            example: bonus
+        - name: type
+          in: query
+          description: The type of feature being reported from OGS to the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxlength: 32
+            example: freerounds
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  APIVERSION:
+                    type: string
+                    example: 1.6
+                  BONUSBALANCE:
+                    type: number
+                    description: >-
+                      The player’s bonus money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  REALBALANCE:
+                    type: number
+                    description: >-
+                      The player’s real money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  TOTALAMOUNT:
+                    type: number
+                    description: >-
+                      The total amount of money that was rolled back to the
+                      player. The totalamount value must be equal to the
+                      rollbackamount value in the rollback request. If this is
+                      not true, an error will be generated towards the game and
+                      the rollback will not be deemed successful.
+                    example: 12.5
+                  CURRENCY:
+                    type: string
+                    format: currency
+                    example: SEK
+              examples:
+                Success:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" ?>
+                    <RSP request="rollback" rc="0">
+                    <APIVERSION>1.6</APIVERSION>
+                    <CURRENCY>SEK</CURRENCY>
+                    <REALBALANCE>1000.50</REALBALANCE>
+                    <BONUSBALANCE>123.45</BONUSBALANCE>
+                    <TOTALAMOUNT>12.5</TOTALAMOUNT>
+                    </RSP>
+                TechError:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <RSP request="rollback" rc="1" msg="Technical error">
+                    <APIVERSION>1.6</APIVERSION>
+                    </RSP>
+        '400':
+          description: Invalid status value
+  /gpapi?request=credit:
+    get:
+      tags:
+        - credit
+      summary: >-
+        Credit an amount to the players wallet outside of a normal gameplay
+        lifecycle
+      description: >-
+        Consumed by wallet platform to credit an amount to the players wallet
+        outside of a normal gameplay lifecycle. Can be used for crediting
+        players with winnings long after the gameplay that generated these
+        winnings has been concluded. For example, any jackpot winnings that have
+        been materialized asynchronously in respect to the game play can be
+        attributed through this endpoint. The wallet provider will be required
+        to ensure idempotency on these requests as they currently do for
+        results. Credit requests should not be rolled back. It is expected that
+        integrated parties retry until it is successful using the same
+        strategies as currently applied by Game Providers retrying a result.
+      parameters:
+        - name: request
+          in: query
+          description: Request method name
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: credit
+        - name: accountid
+          in: query
+          description: The player's unique account ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 100002
+        - name: loginname
+          in: query
+          description: Username representing OGS in the wallet platform
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: nogsuser
+        - name: password
+          in: query
+          description: >-
+            Password for the OGS user. Should be a strong password containing at
+            least 8 characters
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: GE45_re23HJU
+        - name: apiversion
+          in: query
+          description: Specification of the OGS Wallet API version that is running
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: 1.6
+        - name: device
+          in: query
+          description: >-
+            The device type of the gaming client. Valid options are "desktop"
+            and "mobile"
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: desktop
+        - name: product
+          in: query
+          description: OGS game product category
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            example: casino
+        - name: currency
+          in: query
+          description: The player's currency for this action
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: currency
+            example: SEK
+        - name: gametype
+          in: query
+          description: OGS game type
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - slots
+              - tablegame
+              - videopoker
+              - probability
+              - lottery
+            example: slots
+        - name: gamemodel
+          in: query
+          description: OGS game model
+          required: false
+          explode: true
+          schema:
+            type: string
+            maxLength: 32
+            enum:
+              - 10reels
+              - 6reels
+              - 5reels
+              - 4reels
+              - 3reels
+              - blackjack
+              - roulette
+              - keno
+              - bingo
+              - arcade
+              - virtualsports
+              - scratchcard
+            example: 5reels
+        - name: gpid
+          in: query
+          description: OGS game provider ID
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 100
+        - name: nogsgameid
+          in: query
+          description: OGS specific game ID
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 700233
+        - name: gamesessionid
+          in: query
+          description: The operator generated session identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxLength: 250
+            example: CF125F-1624-FDGC21-102562
+        - name: creditamount
+          in: query
+          description: Amount to credit to the player
+          required: true
+          explode: true
+          schema:
+            type: number
+            example: 100
+        - name: sourceid
+          in: query
+          description: >-
+            Based on the gametype, an identifier that can be used to understand
+            the source of the credit.
+          required: true
+          explode: true
+          schema:
+            type: string
+            maxlength: 250
+            example: ''
+        - name: jpw
+          in: query
+          description: (Optional) Total jackpot win amount in player’s currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+        - name: jpwbase
+          in: query
+          description: (Optional) Total jackpot win amount in jackpot base currency
+          required: false
+          explode: true
+          schema:
+            type: number
+            example: 12.5
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: Request method name
+                    type: string
+                    example: getaccount
+                    xml:
+                      attribute: true
+                  rc:
+                    type: integer
+                    example: 0
+                    xml:
+                      attribute: true
+                  msg:
+                    type: string
+                    example: ''
+                    xml:
+                      attribute: true
+                  APIVERSION:
+                    type: string
+                    example: 1.6
+                  BONUSBALANCE:
+                    type: number
+                    description: >-
+                      The player’s bonus money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  REALBALANCE:
+                    type: number
+                    description: >-
+                      The player’s real money balance after the OGS Wallet API
+                      method has been applied
+                    example: 123.45
+                  TOTALAMOUNT:
+                    type: number
+                    description: >-
+                      The total amount of money that was credtited to the
+                      player. The totalamount value must be equal to the
+                      creditamount value in the credit request.If this is not
+                      true, an error will be generated towards the game and the
+                      credit will not be deemed successful.
+                    example: 12.5
+                  CURRENCY:
+                    type: string
+                    format: currency
+                    example: SEK
+              examples:
+                Success:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8" ?>
+                    <RSP request="credit" rc="0">
+                    <APIVERSION>1.6</APIVERSION>
+                    <CURRENCY>SEK</CURRENCY>
+                    <REALBALANCE>1000.50</REALBALANCE>
+                    <BONUSBALANCE>123.45</BONUSBALANCE>
+                    <TOTALAMOUNT>100.00</TOTALAMOUNT>
+                    </RSP>
+                TechError:
+                  value: |
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <RSP request="credit" rc="1" msg="Technical error">
                     <APIVERSION>1.6</APIVERSION>
                     </RSP>
         '400':
@@ -1615,3 +3674,18 @@ components:
             A wager call specifying a tip will always be followed by a
             corresponding result call to close the game round. This result call
             shall also contain the type “tips”.
+    moneytype:
+      name: moneytype
+      in: query
+      description: >-
+        The type of money being awarded in the promotional feature. Possible
+        values are “bonus” or “real”
+      required: true
+      explode: true
+      schema:
+        type: string
+        maxLength: 32
+        enum:
+          - real
+          - bonus
+        example: bonus
