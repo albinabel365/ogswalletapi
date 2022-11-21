@@ -97,7 +97,7 @@ paths:
                 $ref: '#/components/schemas/GetAccountResponse'
               examples:
                 Success:
-                  value: >
+                  value: |
                     <?xml version="1.0" encoding="UTF-8" ?>
                     <RSP request="getaccount" rc="0">
                     <APIVERSION>1.6</APIVERSION>
@@ -1369,8 +1369,6 @@ paths:
                     <RSP request="credit" rc="1" msg="Technical error">
                     <APIVERSION>1.6</APIVERSION>
                     </RSP>
-        '400':
-          description: Invalid status value
 components:
   schemas:
     GetAccountResponse:
