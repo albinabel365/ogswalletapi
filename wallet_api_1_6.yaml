@@ -100,15 +100,14 @@ paths:
                   value: |
                     <?xml version="1.0" encoding="UTF-8" ?>
                     <RSP request="getaccount" rc="0">
-                    <APIVERSION>1.6</APIVERSION>
-                    <GAMESESSIONID>AAD8EE30-8C43-11DC-9755-668156D89593</GAMESESSIONID>
-                    <ACCOUNTID>100002</ACCOUNTID>
-                    <CURRENCY>EUR</CURRENCY>
-                    <COUNTRY>SWE</COUNTRY>
-                    <JURISDICTION>UK</JURISDICTION>
-                    <NATIONALID></NATIONALID>
-                    <NICKNAME></NICKNAME>
-
+                      <APIVERSION>1.6</APIVERSION>
+                      <GAMESESSIONID>AAD8EE30-8C43-11DC-9755-668156D89593</GAMESESSIONID>
+                      <ACCOUNTID>100002</ACCOUNTID>
+                      <CURRENCY>EUR</CURRENCY>
+                      <COUNTRY>SWE</COUNTRY>
+                      <JURISDICTION>UK</JURISDICTION>
+                      <NATIONALID></NATIONALID>
+                      <NICKNAME></NICKNAME>
                     </RSP>
                 TechError:
                   value: |
