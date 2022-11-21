@@ -126,7 +126,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -212,7 +212,7 @@ paths:
                     example: 100002
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
                   COUNTRY:
                     type: string
@@ -356,7 +356,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -449,17 +449,17 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: The player's bonus money balance
                     example: 123.45
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: The player’s real money balance
                     example: 123.45
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
                   GAMESESSIONID:
                     type: string
@@ -573,7 +573,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -644,7 +644,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpc
           in: query
@@ -653,7 +653,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpcbase
           in: query
@@ -662,7 +662,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -714,14 +714,14 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   BONUSMONEYBET:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The amount of the bet that took place with bonus money.
                       The combination of bonusmoneybet + realmoneybet must
@@ -731,14 +731,14 @@ paths:
                     example: 0
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALMONEYBET:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The amount of the bet that took place with real money. The
                       combination of bonusmoneybet + realmoneybet must exactly
@@ -748,7 +748,7 @@ paths:
                     example: 10.21251
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
                   GAMESESSIONID:
                     type: string
@@ -884,7 +884,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -955,7 +955,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             maximum: 0
             example: 0
         - name: jpc
@@ -965,7 +965,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpcbase
           in: query
@@ -974,7 +974,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -1055,14 +1055,14 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   BONUSMONEYBET:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The amount of the bet that took place with bonus money.
                       The combination of bonusmoneybet + realmoneybet must
@@ -1072,14 +1072,14 @@ paths:
                     example: 0
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALMONEYBET:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The amount of the bet that took place with real money. The
                       combination of bonusmoneybet + realmoneybet must exactly
@@ -1089,7 +1089,7 @@ paths:
                     example: 10.21251
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
                   GAMESESSIONID:
                     type: string
@@ -1203,7 +1203,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -1274,7 +1274,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 0
         - name: jpc
           in: query
@@ -1283,7 +1283,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpcbase
           in: query
@@ -1292,7 +1292,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -1353,14 +1353,14 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   BONUSMONEYBET:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The amount of the bet that took place with bonus money.
                       The combination of bonusmoneybet + realmoneybet must
@@ -1370,14 +1370,14 @@ paths:
                     example: 0
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALMONEYBET:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The amount of the bet that took place with real money. The
                       combination of bonusmoneybet + realmoneybet must exactly
@@ -1387,7 +1387,7 @@ paths:
                     example: 10.21251
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
                   GAMESESSIONID:
                     type: string
@@ -1504,7 +1504,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -1575,7 +1575,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: gamedetails
           in: query
@@ -1609,7 +1609,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpwbase
           in: query
@@ -1618,7 +1618,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -1670,21 +1670,21 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   TOTALAMOUNT:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The total amount of money that was awarded the player. The
                       totalamount value must be equal to the wonamount value in
@@ -1694,7 +1694,7 @@ paths:
                     example: 12.5
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
               examples:
                 Success:
@@ -1800,7 +1800,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -1871,7 +1871,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: gamedetails
           in: query
@@ -1905,7 +1905,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpwbase
           in: query
@@ -1914,7 +1914,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -2009,21 +2009,21 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   TOTALAMOUNT:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The total amount of money that was awarded the player. The
                       totalamount value must be equal to the wonamount value in
@@ -2033,7 +2033,7 @@ paths:
                     example: 12.5
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
               examples:
                 Success:
@@ -2137,7 +2137,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -2208,7 +2208,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: gamedetails
           in: query
@@ -2242,7 +2242,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpwbase
           in: query
@@ -2251,7 +2251,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -2312,21 +2312,21 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   TOTALAMOUNT:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The total amount of money that was awarded the player. The
                       totalamount value must be equal to the wonamount value in
@@ -2336,7 +2336,7 @@ paths:
                     example: 12.5
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
               examples:
                 Success:
@@ -2442,7 +2442,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -2518,7 +2518,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpc
           in: query
@@ -2527,7 +2527,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpcbase
           in: query
@@ -2536,7 +2536,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -2588,21 +2588,21 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   TOTALAMOUNT:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The total amount of money that was rolled back to the
                       player. The totalamount value must be equal to the
@@ -2612,7 +2612,7 @@ paths:
                     example: 12.5
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
               examples:
                 Success:
@@ -2717,7 +2717,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -2793,7 +2793,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             maximum: 0
             example: 0
         - name: jpc
@@ -2803,7 +2803,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpcbase
           in: query
@@ -2812,7 +2812,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: roundid
           in: query
@@ -2907,21 +2907,21 @@ paths:
                     example: 1.6
                   BONUSBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s bonus money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   TOTALAMOUNT:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The total amount of money that was rolled back to the
                       player. The totalamount value must be equal to the
@@ -2931,7 +2931,7 @@ paths:
                     example: 12.5
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
               examples:
                 Success:
@@ -3045,7 +3045,7 @@ paths:
           explode: true
           schema:
             type: string
-            format: currency
+            format: money
             example: SEK
         - name: gametype
           in: query
@@ -3116,7 +3116,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 100
         - name: sourceid
           in: query
@@ -3136,7 +3136,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
         - name: jpwbase
           in: query
@@ -3145,7 +3145,7 @@ paths:
           explode: true
           schema:
             type: number
-            format: currency
+            format: money
             example: 12.5
       responses:
         '200':
@@ -3182,14 +3182,14 @@ paths:
                     example: 123.45
                   REALBALANCE:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The player’s real money balance after the OGS Wallet API
                       method has been applied
                     example: 123.45
                   TOTALAMOUNT:
                     type: number
-                    format: currency
+                    format: money
                     description: >-
                       The total amount of money that was credtited to the
                       player. The totalamount value must be equal to the
@@ -3199,7 +3199,7 @@ paths:
                     example: 12.5
                   CURRENCY:
                     type: string
-                    format: currency
+                    format: money
                     example: SEK
               examples:
                 Success:
@@ -3255,7 +3255,7 @@ components:
           example: 100002
         CURRENCY:
           type: string
-          format: currency
+          format: money
           example: SEK
         COUNTRY:
           type: string
@@ -3308,17 +3308,17 @@ components:
           example: 1.6
         BONUSBALANCE:
           type: number
-          format: currency
+          format: money
           description: The player's bonus money balance
           example: 123.45
         REALBALANCE:
           type: number
-          format: currency
+          format: money
           description: The player’s real money balance
           example: 123.45
         CURRENCY:
           type: string
-          format: currency
+          format: money
           example: SEK
         GAMESESSIONID:
           type: string
@@ -3353,14 +3353,14 @@ components:
           example: 1.6
         BONUSBALANCE:
           type: number
-          format: currency
+          format: money
           description: >-
             The player’s bonus money balance after the OGS Wallet API method has
             been applied
           example: 123.45
         BONUSMONEYBET:
           type: number
-          format: currency
+          format: money
           description: >-
             The amount of the bet that took place with bonus money. The
             combination of bonusmoneybet + realmoneybet must exactly add up to
@@ -3370,14 +3370,14 @@ components:
           example: 0
         REALBALANCE:
           type: number
-          format: currency
+          format: money
           description: >-
             The player’s real money balance after the OGS Wallet API method has
             been applied
           example: 123.45
         REALMONEYBET:
           type: number
-          format: currency
+          format: money
           description: >-
             The amount of the bet that took place with real money. The
             combination of bonusmoneybet + realmoneybet must exactly add up to
@@ -3387,7 +3387,7 @@ components:
           example: 10.21251
         CURRENCY:
           type: string
-          format: currency
+          format: money
           example: SEK
         GAMESESSIONID:
           type: string
@@ -3422,21 +3422,21 @@ components:
           example: 1.6
         BONUSBALANCE:
           type: number
-          format: currency
+          format: money
           description: >-
             The player’s bonus money balance after the OGS Wallet API method has
             been applied
           example: 123.45
         REALBALANCE:
           type: number
-          format: currency
+          format: money
           description: >-
             The player’s real money balance after the OGS Wallet API method has
             been applied
           example: 123.45
         TOTALAMOUNT:
           type: number
-          format: currency
+          format: money
           description: >-
             The total amount of money that was awarded the player. The
             totalamount value must be equal to the wonamount value in the result
@@ -3445,7 +3445,7 @@ components:
           example: 12.5
         CURRENCY:
           type: string
-          format: currency
+          format: money
           example: SEK
     RollbackResponse:
       type: object
@@ -3471,21 +3471,21 @@ components:
           example: 1.6
         BONUSBALANCE:
           type: number
-          format: currency
+          format: money
           description: >-
             The player’s bonus money balance after the OGS Wallet API method has
             been applied
           example: 123.45
         REALBALANCE:
           type: number
-          format: currency
+          format: money
           description: >-
             The player’s real money balance after the OGS Wallet API method has
             been applied
           example: 123.45
         TOTALAMOUNT:
           type: number
-          format: currency
+          format: money
           description: >-
             The total amount of money that was rolled back to the player. The
             totalamount value must be equal to the rollbackamount value in the
@@ -3494,7 +3494,7 @@ components:
           example: 12.5
         CURRENCY:
           type: string
-          format: currency
+          format: money
           example: SEK
     CreditResponse:
       type: object
@@ -3526,14 +3526,14 @@ components:
           example: 123.45
         REALBALANCE:
           type: number
-          format: currency
+          format: money
           description: >-
             The player’s real money balance after the OGS Wallet API method has
             been applied
           example: 123.45
         TOTALAMOUNT:
           type: number
-          format: currency
+          format: money
           description: >-
             The total amount of money that was credtited to the player. The
             totalamount value must be equal to the creditamount value in the
@@ -3542,7 +3542,7 @@ components:
           example: 12.5
         CURRENCY:
           type: string
-          format: currency
+          format: money
           example: SEK
     FreeRoundRequest:
       type: object
