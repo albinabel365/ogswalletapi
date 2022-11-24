@@ -1471,8 +1471,6 @@ paths:
                     <RSP request="credit" rc="1" msg="Technical error">
                     <APIVERSION>1.6</APIVERSION>
                     </RSP>
-        '400':
-          description: Invalid status value
 components:
   schemas:
     GetAccountResponse:
