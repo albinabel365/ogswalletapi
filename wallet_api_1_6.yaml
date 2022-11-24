@@ -707,6 +707,7 @@ paths:
             example: ''
         - name: gamestatus
           in: query
+          required: true
           description: >-
             Indicates when the round is to be closed. Valid options are
             "pending" and "completed". Pending indicates that more result will
@@ -904,6 +905,7 @@ paths:
             example: ''
         - name: gamestatus
           in: query
+          required: true
           description: >-
             Indicates when the round is to be closed. Valid options are
             "pending" and "completed". Pending indicates that more result will
@@ -1039,6 +1041,7 @@ paths:
             example: ''
         - name: gamestatus
           in: query
+          required: true
           description: >-
             Indicates when the round is to be closed. Valid options are
             "pending" and "completed". Pending indicates that more result will
