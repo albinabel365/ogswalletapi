@@ -353,6 +353,12 @@ paths:
                             </TEXT>
                             <!--The OPTIONS element can contain one or more OPTION elements. The number of options is shown in the count attribute. Each OPTION has an id attribute. The attribute IDs and their expected behavior is listed below. Each OPTION also has an action attribute; these are elaborated upon below. The OPTION order specifies the order in which the options shall appear in the message box. -->
                             <OPTIONS count="2">
+                                <OPTION id="0" action="https://op.example.com/34754">
+                                    Continue.
+                                </OPTION>
+                                <OPTION id="103" action="https://op.example.com/4711">
+                                    Details
+                                </OPTION>
                             </OPTIONS>
                         </MESSAGE>
                     </RSP>
