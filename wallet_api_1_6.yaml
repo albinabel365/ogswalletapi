@@ -707,12 +707,11 @@ paths:
             example: ''
         - name: gamestatus
           in: query
-          required: true
           description: >-
             Indicates when the round is to be closed. Valid options are
             "pending" and "completed". Pending indicates that more result will
             come within the same game round
-          required: false
+          required: true
           explode: true
           schema:
             type: string
@@ -905,12 +904,11 @@ paths:
             example: ''
         - name: gamestatus
           in: query
-          required: true
           description: >-
             Indicates when the round is to be closed. Valid options are
             "pending" and "completed". Pending indicates that more result will
             come within the same game round
-          required: false
+          required: true
           explode: true
           schema:
             type: string
@@ -1041,12 +1039,11 @@ paths:
             example: ''
         - name: gamestatus
           in: query
-          required: true
           description: >-
             Indicates when the round is to be closed. Valid options are
             "pending" and "completed". Pending indicates that more result will
             come within the same game round
-          required: false
+          required: true
           explode: true
           schema:
             type: string
