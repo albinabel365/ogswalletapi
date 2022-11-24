@@ -327,26 +327,8 @@ paths:
                                 <OPTION id="0" action="https://op.example.com/34754">
                                     Continue.
                                 </OPTION>
-                                <OPTION id="100" action="https://op.example.com/4711">
-                                    close
-                                </OPTION>
-                                <OPTION id="101" action="https://op.example.com/4711">
-                                    Proceed
-                                </OPTION>
-                                <OPTION id="102" action="https://op.example.com/4711">
-                                    Exit
-                                </OPTION>
                                 <OPTION id="103" action="https://op.example.com/4711">
                                     Details
-                                </OPTION>
-                                <OPTION id="104" action="https://op.example.com/4711">
-                                    Accept an offer
-                                </OPTION>
-                                <OPTION id="105" action="https://op.example.com/4711">
-                                    Decline an offer
-                                </OPTION>
-                                <OPTION id="106" action="https://op.example.com/4711">
-                                    logout
                                 </OPTION>
                             </OPTIONS>
                         </MESSAGE>
@@ -371,33 +353,9 @@ paths:
                             </TEXT>
                             <!--The OPTIONS element can contain one or more OPTION elements. The number of options is shown in the count attribute. Each OPTION has an id attribute. The attribute IDs and their expected behavior is listed below. Each OPTION also has an action attribute; these are elaborated upon below. The OPTION order specifies the order in which the options shall appear in the message box. -->
                             <OPTIONS count="2">
-                                <OPTION id="0" action="https://op.example.com/34754">
-                                    Continue.
-                                </OPTION>
-                                <OPTION id="100" action="https://op.example.com/4711">
-                                    close
-                                </OPTION>
-                                <OPTION id="101" action="https://op.example.com/4711">
-                                    Proceed
-                                </OPTION>
-                                <OPTION id="102" action="https://op.example.com/4711">
-                                    Exit
-                                </OPTION>
-                                <OPTION id="103" action="https://op.example.com/4711">
-                                    Details
-                                </OPTION>
-                                <OPTION id="104" action="https://op.example.com/4711">
-                                    Accept an offer
-                                </OPTION>
-                                <OPTION id="105" action="https://op.example.com/4711">
-                                    Decline an offer
-                                </OPTION>
-                                <OPTION id="106" action="https://op.example.com/4711">
-                                    logout
-                                </OPTION>
                             </OPTIONS>
                         </MESSAGE>
-                    </RSP>                    
+                    </RSP>
                 TechError:
                   value: |
                     <?xml version="1.0" encoding="UTF-8"?>
@@ -810,16 +768,16 @@ paths:
                   value: |
                     <?xml version="1.0" encoding="UTF-8" ?>
                     <RSP request="result" rc="0">
-                    <APIVERSION>1.6</APIVERSION>
-                    <CURRENCY>SEK</CURRENCY>
-                    <REALBALANCE>1000.50</REALBALANCE>
-                    <BONUSBALANCE>123.45</BONUSBALANCE>
-                    <TOTALAMOUNT>12.5</TOTALAMOUNT>
+                        <APIVERSION>1.6</APIVERSION>
+                        <CURRENCY>SEK</CURRENCY>
+                        <REALBALANCE>1000.50</REALBALANCE>
+                        <BONUSBALANCE>123.45</BONUSBALANCE>
+                        <TOTALAMOUNT>12.5</TOTALAMOUNT>
                     </RSP>
                 RealityCheck:
                   value: |
                     <?xml version="1.0" encoding="UTF-8" ?>
-                    <RSP request="wager" rc="0">
+                    <RSP request="result" rc="0">
                         <APIVERSION>1.6</APIVERSION>
                         <CURRENCY>SEK</CURRENCY>
                         <REALBALANCE>1000.50</REALBALANCE>
@@ -835,26 +793,8 @@ paths:
                                 <OPTION id="0" action="https://op.example.com/34754">
                                     Continue.
                                 </OPTION>
-                                <OPTION id="100" action="https://op.example.com/4711">
-                                    close
-                                </OPTION>
-                                <OPTION id="101" action="https://op.example.com/4711">
-                                    Proceed
-                                </OPTION>
-                                <OPTION id="102" action="https://op.example.com/4711">
-                                    Exit
-                                </OPTION>
                                 <OPTION id="103" action="https://op.example.com/4711">
                                     Details
-                                </OPTION>
-                                <OPTION id="104" action="https://op.example.com/4711">
-                                    Accept an offer
-                                </OPTION>
-                                <OPTION id="105" action="https://op.example.com/4711">
-                                    Decline an offer
-                                </OPTION>
-                                <OPTION id="106" action="https://op.example.com/4711">
-                                    logout
                                 </OPTION>
                             </OPTIONS>
                         </MESSAGE>
@@ -862,7 +802,7 @@ paths:
                 BonusMessage:
                   value: |
                     <?xml version="1.0" encoding="UTF-8" ?>
-                    <RSP request="wager" rc="0">
+                    <RSP request="result" rc="0">
                         <APIVERSION>1.6</APIVERSION>
                         <CURRENCY>SEK</CURRENCY>
                         <REALBALANCE>1000.50</REALBALANCE>
@@ -881,31 +821,13 @@ paths:
                                 <OPTION id="0" action="https://op.example.com/34754">
                                     Continue.
                                 </OPTION>
-                                <OPTION id="100" action="https://op.example.com/4711">
-                                    close
-                                </OPTION>
-                                <OPTION id="101" action="https://op.example.com/4711">
-                                    Proceed
-                                </OPTION>
-                                <OPTION id="102" action="https://op.example.com/4711">
-                                    Exit
-                                </OPTION>
                                 <OPTION id="103" action="https://op.example.com/4711">
                                     Details
-                                </OPTION>
-                                <OPTION id="104" action="https://op.example.com/4711">
-                                    Accept an offer
-                                </OPTION>
-                                <OPTION id="105" action="https://op.example.com/4711">
-                                    Decline an offer
-                                </OPTION>
-                                <OPTION id="106" action="https://op.example.com/4711">
-                                    logout
                                 </OPTION>
                             </OPTIONS>
                         </MESSAGE>
                     </RSP>
-                    
+
                 TechError:
                   value: |
                     <?xml version="1.0" encoding="UTF-8"?>
@@ -1549,6 +1471,8 @@ paths:
                     <RSP request="credit" rc="1" msg="Technical error">
                     <APIVERSION>1.6</APIVERSION>
                     </RSP>
+        '400':
+          description: Invalid status value
 components:
   schemas:
     GetAccountResponse:
@@ -1733,7 +1657,7 @@ components:
         request:
           description: Request method name
           type: string
-          example: getaccount
+          example: result
           xml:
             attribute: true
         rc:
@@ -1776,6 +1700,12 @@ components:
           type: string
           format: money
           example: SEK
+        MESSAGE:
+          $ref: '#/components/schemas/MessageTrigger'
+      xml:
+        name: RSP
+        wrapped: true
+
     RollbackResponse:
       type: object
       properties:
@@ -1893,6 +1823,90 @@ components:
           maxLength: 32
           description: The type of feature being reported from OGS to the wallet platform
           example: freerounds
+    MessageTrigger:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 32
+          description: >-
+            These are the message IDs that are allowed inside a message trigger 100 [Reality Check] and 101 [Bonus messaging]
+          xml:
+            attribute: true
+          example: 100
+        nogslang:
+          type: string
+          maxLength: 5
+          description: ISO language code
+          example: en_us
+          xml:
+            attribute: true
+        TITLE:
+          type: string
+          maxLength: 60
+          description: TITLE contains the title of the message box, which must be in one short line of no more than 60 characters
+          example: Starting to use bonus funds
+        TEXT:
+          type: string
+          maxLength: 300
+          description: TEXT is the message box text and may contain multiple lines. When specifying a forced line break the symbol used is \n. The max length of the text is 300 characters. Any further detailed information can be supplied from a ‘Details’ OPTION.
+          example: You are starting play with bonus funds. From this point it possible that won funds may have to be re-bet many times before they can be withdrawn from your account. Please click Bonus Details for further details.
+        OPTIONS:
+          $ref: "#/components/schemas/MessageTriggerOptions"
+      xml:
+        name: MESSAGE
+        wrapped: true
+
+    MessageTriggerOptions:
+        type: object
+        properties:
+          count:
+            type: integer
+            description: >-
+              The OPTIONS element can contain one or more OPTION elements. The number of options is shown in the count attribute. Each OPTION has an id attribute. The attribute IDs and their expected behavior is listed below. Each OPTION also has an action attribute;
+            xml:
+              attribute: true
+
+          OPTION:
+            type: array
+            items:
+              $ref: "#/components/schemas/MessageTriggerOption"
+        xml:
+          name: OPTIONS
+          wrapped: true
+
+      
+    MessageTriggerOption:
+        type: object
+        properties:
+          id:
+            type: string
+            maxLength: 3
+            description: >-
+              Each OPTION element inside a message trigger has an ID that specifies the expected behavior when that option is selected
+            xml:
+              attribute: true
+            enum:
+              - 0
+              - 100
+              - 102
+              - 103
+              - 104
+              - 105
+              - 106
+            example: 101
+          action:
+            type: string
+            maxLength: 3
+            description: >-
+              Each OPTION element inside a message trigger has an ID that specifies the expected behavior when that option is selected
+            xml:
+              attribute: true
+            example: https://op.example.com/34754  
+        xml:
+          name: OPTION
+          wrapped: true
+            
   parameters:
     request:
       name: request
